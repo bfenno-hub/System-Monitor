@@ -192,7 +192,6 @@ float LinuxParser::ProcessStartTime(int pid){
 
 }
 
-
 // TODO: Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() { return 0; }
 
@@ -229,7 +228,7 @@ float LinuxParser::SystemCpuUtilization() {
 
 }
 
-float LinuxParser::ProcessCpuUtilization() { 
+float LinuxParser::ProcessCpuUtilization(int pid) { 
 
   string filename = LinuxParser::kProcDirectory + to_string(pid) + LinuxParser::kStatFilename;
   std::vector<std::string> values = LinuxParser::ParseFile(filename, 1, 14, 17);
