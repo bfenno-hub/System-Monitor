@@ -23,7 +23,6 @@ class Process {
   static void sort(std::vector<Process>& processes);
 
   Process (int p);
-  void GetInfo();
   // TODO: Declare any necessary private members
  private:
   int pid; 

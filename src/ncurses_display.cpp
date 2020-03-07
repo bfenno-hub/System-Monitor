@@ -58,7 +58,7 @@ void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
                                       WINDOW* window, int n) {
 
   //sort based on CPU util                                   
-  Process::sort(processes);
+  std::sort(processes.begin(), processes.end(), [](Process& a, Process& b) {return a < b;});
 
   int row{0};
   int const pid_column{2};
