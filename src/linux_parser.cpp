@@ -16,16 +16,14 @@ std::string LinuxParser::ParseFile(std::string filename, int row, int col){
   file.open(filename);
   if (file.is_open()){
     
-    //find the row
     for (int i = 0; i < row; i++){
       getline(file, line);
     }
     std::istringstream stream(line);
-    //find the column
+ 
     for (int i = 0; i < col; i++){
       stream >> target;
     }
-    //std::cout << "\n" + target;
     return target;
 
   } else{
@@ -47,7 +45,7 @@ std::string LinuxParser::ParseFile(std::string filename, std::string key){
       stream >> header;
       if (header == key){
         stream >> target;
-        //std::cout << target << std::endl;
+
         file.close();
         return target;
       }  
@@ -76,19 +74,16 @@ std::vector<std::string> LinuxParser::ParseFile (std::string filename, int row, 
   std::ifstream file(filename);
   string line;
 
-  //find row
   for (int i = 0; i < row; i++){
       getline(file, line);
   }
   std::istringstream stream(line);
 
-  //find column
   string skip;
   for (int i = 1; i < col1; i++){
     stream >> skip;
   }
   
-  //get values
   int num = col2 - col1 + 1;
   string target;
   vector<string> targets;
@@ -129,7 +124,6 @@ string LinuxParser::Kernel() {
 }
 
 // BONUS: Update this to use std::filesystem
-// I think this code is right, did some testing on my machine. Doesn't build on VM (Older compiler version?).
 /*
 vector<int> LinuxParser::Pids() {
   vector<int> pids;
@@ -191,19 +185,6 @@ float LinuxParser::ProcessStartTime(int pid){
   return starttime;
 
 }
-
-// TODO: Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { return 0; }
-
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { return 0; }
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
 float LinuxParser::SystemCpuUtilization() {   
@@ -314,5 +295,4 @@ long LinuxParser::UpTime(int pid) {
 
   float systemuptime = LinuxParser::UpTime(); // in seconds
   return systemuptime - LinuxParser::ProcessStartTime(pid);
-
  }

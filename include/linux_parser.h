@@ -59,10 +59,6 @@ enum CPUStates {
 
 float SystemCpuUtilization();
 float ProcessCpuUtilization(int pid);
-long Jiffies();
-long ActiveJiffies();
-long ActiveJiffies(int pid);
-long IdleJiffies();
 
 // Processes
 std::string Command(int pid);
